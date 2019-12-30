@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{18650403-969F-487A-8F2E-D932CB1CBD1D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Geomethod.GeoLib</RootNamespace>
+    <AssemblyName>Geomethod.GeoLib</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\Constants.cs" />
+    <Compile Include="Config\StylesConfig.cs" />
+    <Compile Include="Config\Interfaces.cs" />
+    <Compile Include="Config\Config.cs" />
+    <Compile Include="Data\CustomTable.cs" />
+    <Compile Include="Data\CustomTables.cs" />
+    <Compile Include="Data\TypeBinding.cs" />
+    <Compile Include="Lib\BgImages.cs" />
+    <Compile Include="Map\BufferedMap.cs" />
+    <Compile Include="Utils\DataTableSerializer.cs" />
+    <Compile Include="Context\Context.cs" />
+    <Compile Include="Context\Filter.cs" />
+    <Compile Include="Context\Search.cs" />
+    <Compile Include="Context\Stat.cs" />
+    <Compile Include="Context\Visitor.cs" />
+    <Compile Include="Lib\BgImage.cs" />
+    <Compile Include="Lib\Colors.cs" />
+    <Compile Include="Lib\Images.cs" />
+    <Compile Include="Lib\Layer.cs" />
+    <Compile Include="Lib\Layers.cs" />
+    <Compile Include="Lib\NamedColor.cs" />
+    <Compile Include="Lib\Scales.cs" />
+    <Compile Include="Lib\View.cs" />
+    <Compile Include="Lib\Views.cs" />
+    <Compile Include="Lib\Composite.cs" />
+    <Compile Include="Lib\Indexer.cs" />
+    <Compile Include="Lib\Lib.cs" />
+    <Compile Include="Lib\Range.cs" />
+    <Compile Include="Lib\Selection.cs" />
+    <Compile Include="Lib\Type.cs" />
+    <Compile Include="Map\CoordTransform.cs" />
+    <Compile Include="Map\Map.cs" />
+    <Compile Include="Objects\Caption.cs" />
+    <Compile Include="Objects\Object.cs" />
+    <Compile Include="Objects\Point.cs" />
+    <Compile Include="Objects\Polygon.cs" />
+    <Compile Include="Objects\Polyline.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Styles\BaseStyle.cs" />
+    <Compile Include="Styles\Brush.cs" />
+    <Compile Include="Styles\Extended.cs" />
+    <Compile Include="Styles\Image.cs" />
+    <Compile Include="Styles\Pen.cs" />
+    <Compile Include="Styles\Style.cs" />
+    <Compile Include="Styles\StyleBuilder.cs" />
+    <Compile Include="Styles\Text.cs" />
+    <Compile Include="Utils\GeomUtils.cs" />
+    <Compile Include="Utils\MapCreator.cs" />
+    <Compile Include="Utils\Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\GeoLib.locale.csv" />
+    <EmbeddedResource Include="Resources\GeoLibSql.csv" />
+    <EmbeddedResource Include="Resources\UpdateScripts.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\geomethod\Geomethod.Data\Geomethod.Data.csproj">
+      <Project>{084B9904-8973-42EE-B9AD-FCDB2EF4CBAA}</Project>
+      <Name>Geomethod.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\geomethod\Geomethod\Geomethod.csproj">
+      <Project>{A61A79A7-C64C-4C3A-8FCF-CAB7A33D30C1}</Project>
+      <Name>Geomethod</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TextFile1.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

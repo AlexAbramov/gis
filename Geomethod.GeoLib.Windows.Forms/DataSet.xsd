@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet" targetNamespace="http://tempuri.org/DataSet.xsd" xmlns:mstns="http://tempuri.org/DataSet.xsd" xmlns="http://tempuri.org/DataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DataSet" msprop:Generator_DataSetName="DataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CoordsDataTable" msprop:Generator_UserTableName="CoordsDataTable" msprop:Generator_RowDeletedName="CoordsDataTableRowDeleted" msprop:Generator_RowChangedName="CoordsDataTableRowChanged" msprop:Generator_RowClassName="CoordsDataTableRow" msprop:Generator_RowChangingName="CoordsDataTableRowChanging" msprop:Generator_RowEvArgName="CoordsDataTableRowChangeEvent" msprop:Generator_RowEvHandlerName="CoordsDataTableRowChangeEventHandler" msprop:Generator_TableClassName="CoordsDataTableDataTable" msprop:Generator_TableVarName="tableCoordsDataTable" msprop:Generator_RowDeletingName="CoordsDataTableRowDeleting" msprop:Generator_TablePropName="CoordsDataTable">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="N" msdata:ReadOnly="true" msdata:Expression="Count(X)" msprop:Generator_UserColumnName="N" msprop:Generator_ColumnPropNameInRow="N" msprop:Generator_ColumnVarNameInTable="columnN" msprop:Generator_ColumnPropNameInTable="NColumn" type="xs:int" />
+              <xs:element name="X" msprop:Generator_UserColumnName="X" msprop:Generator_ColumnPropNameInRow="X" msprop:Generator_ColumnVarNameInTable="columnX" msprop:Generator_ColumnPropNameInTable="XColumn" type="xs:int" />
+              <xs:element name="Y" msprop:Generator_UserColumnName="Y" msprop:Generator_ColumnPropNameInRow="Y" msprop:Generator_ColumnVarNameInTable="columnY" msprop:Generator_ColumnPropNameInTable="YColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

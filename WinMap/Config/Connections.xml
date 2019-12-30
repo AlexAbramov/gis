@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ConnectionsConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <version>1</version>
+  <date>2009-11-22T14:15:03.712+03:00</date>
+  <checksum />
+  <connectionsInfo>
+    <items>
+    <ConnectionInfo id="1" name="RostOracle" providerName="Oracle Database" connectionString="Data Source=Asus;User ID=RostOracle;Password=" options="" />
+    <ConnectionInfo id="2" name="Map1" providerName="MS Access" connectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\GeoMethod\Data\Rost.mdb" options="" />
+    <ConnectionInfo id="3" name="Map2" providerName="MS Access" connectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Geomethod\Data\Map2.mdb" options="" />
+    <ConnectionInfo id="4" name="Map5" providerName="MS SQL Server" connectionString="Integrated Security=true;Server=ASUS\SQLEXPRESS;Initial Catalog=Map5;" options="" />
+    <ConnectionInfo id="5" name="Map1" providerName="MS SQL Server" connectionString="User ID=Map1;Password=;Server=ASUS\SQLEXPRESS;Initial Catalog=Map1;" options="" />
+    <ConnectionInfo id="6" name="Map3" providerName="MS SQL Server" connectionString="User ID=Map3;Password=;Server=ASUS\SQLEXPRESS;Initial Catalog=Map3;" options="" />
+    <ConnectionInfo id="7" name="Map55" providerName="MS Access" connectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Geomethod\Data\Map55.mdb" options="" />
+    <ConnectionInfo id="8" name="Map21" providerName="MS Access" connectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Geomethod\Data\Map21.mdb" options="" />
+    </items>
+  </connectionsInfo>
+</ConnectionsConfig>

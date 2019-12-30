@@ -1,0 +1,14 @@
+﻿id;en;ru
+defaultviewname;Whole map;Вся карта
+defaulttypename;All;Все
+allinclusivelayername;All;Все
+gtcaption;Captions;Надписи
+gtpoint;Point objects;Точечные объекты
+gtpolygon;Polygons;Площадные объекты
+gtpolyline;Polylines;Линейные объекты
+sbwrongparname;Wrong parameter name;Недопустимое имя параметра
+sbimagenotfound;Image not found;Рисунок не найден
+sbunsupportedimageformat;Unsupported image format;Не поддерживаемый формат графического файла
+sbwrongcolorformat;Wrong color format;Неправильно задан цвет
+sbwrongfloatformat;Wrong float format;Неправильный формат числа с плавающей точкой
+sbwrongenumval;Wrong value;Недопустимое значение

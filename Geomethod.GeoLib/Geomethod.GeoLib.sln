@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geomethod.GeoLib", "Geomethod.GeoLib.csproj", "{18650403-969F-487A-8F2E-D932CB1CBD1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geomethod", "..\..\Common\Geomethod\Geomethod.csproj", "{A61A79A7-C64C-4C3A-8FCF-CAB7A33D30C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geomethod.Data", "..\..\Common\Geomethod.Data\Geomethod.Data.csproj", "{084B9904-8973-42EE-B9AD-FCDB2EF4CBAA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A61A79A7-C64C-4C3A-8FCF-CAB7A33D30C1} = {A61A79A7-C64C-4C3A-8FCF-CAB7A33D30C1}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18650403-969F-487A-8F2E-D932CB1CBD1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18650403-969F-487A-8F2E-D932CB1CBD1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18650403-969F-487A-8F2E-D932CB1CBD1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A61A79A7-C64C-4C3A-8FCF-CAB7A33D30C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A61A79A7-C64C-4C3A-8FCF-CAB7A33D30C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A61A79A7-C64C-4C3A-8FCF-CAB7A33D30C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A61A79A7-C64C-4C3A-8FCF-CAB7A33D30C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{084B9904-8973-42EE-B9AD-FCDB2EF4CBAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{084B9904-8973-42EE-B9AD-FCDB2EF4CBAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{084B9904-8973-42EE-B9AD-FCDB2EF4CBAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{084B9904-8973-42EE-B9AD-FCDB2EF4CBAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA251CA9-DA74-40CB-BEE7-47BD0369830B}
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,190 @@
+pc=yellow; pw=2; spc=red; spds=dash
+
+pc=yellow pw=2 spc=red spds=dash
+
+
+ds=dash; pc=red; bc=lightgreen; enablestf hg=2 
+
+pc=128/23/17/56; bc=blue; pds=dash; pds2=dotted; pw=3.5; 
+
+g=glib(wrect);
+m=map(40,50);
+m.show();
+
+ds={jgy}
+g.drawoval(ds,rect)
+
+
+using System;
+using System.Collections;
+using System.Data;
+using Geomethod.Data;
+using System.IO;
+
+namespace Geomethod.GeoLib
+{
+	/// <summary>
+	/// Summary description for IdGenerator.
+	/// </summary>
+	public class IdGenerator: ISerializable
+	{
+		GLib lib;
+		int minRecordId=Constants.minRecordId;
+		int maxRecordId=Constants.maxRecordId;
+		Hashtable ids=new Hashtable(1<<8);//tableId,RecordId
+
+		#region Construction
+		public IdGenerator(GLib lib)
+		{
+			this.lib=lib;
+	  }
+		#endregion
+
+		#region Serialization
+		public void Load(Context context)
+		{
+			using(IDataReader dr=context.Conn.ExecuteReaderById("selectAllFromGisIds"))
+			{
+				while(dr.Read())
+				{
+					ids.Add(dr.GetInt32(0),dr.GetInt32(1));
+				}
+			}
+		}
+		public void Save(Context context)
+		{
+			if(context.ExportMode)
+			{
+				int count=ids.Count;
+				if(count>0)
+				{
+					int[] keys=new int[count];
+					int[] vals=new int[count];
+					ids.Keys.CopyTo(keys,0);
+					ids.Values.CopyTo(vals,0);
+					for(int i=0;i<count;i++)
+					{
+						GmCommand cmd=context.Conn.CreateCommandById("insertIntoGisIds");
+						cmd.AddInt("TableId",keys[i]);
+						cmd.AddInt("RecordId",vals[i]);
+						cmd.ExecuteNonQuery();
+					}
+				}
+			}
+		}
+		public void Write(Context context,BinaryWriter bw)
+		{ 
+			bw.Write((int)ClassId);
+			bw.Write(minRecordId);
+			bw.Write(maxRecordId);
+			lock(ids)
+			{
+				int count=ids.Count;
+				bw.Write(count);
+				if(count>0)
+				{
+					int[] keys=new int[count];
+					int[] vals=new int[count];
+					ids.Keys.CopyTo(keys,0);
+					ids.Values.CopyTo(vals,0);
+					for(int i=0;i<count;i++)
+					{
+						bw.Write(keys[i]);
+						bw.Write(vals[i]);
+					}
+				}
+			}
+		}
+		public void Read(Context context,BinaryReader br)
+		{
+			minRecordId=br.ReadInt32();
+			maxRecordId=br.ReadInt32();
+			int count=br.ReadInt32();
+			for(int i=0;i<count;i++)
+			{
+				int typeId=br.ReadInt32();
+				int tableId=br.ReadInt32();
+				ids.Add(br.ReadInt32(),br.ReadInt32());
+			}
+		}
+		#endregion
+
+		#region Utils
+		int GetInt(ISerializable ser){return Constants.maxRecordId+(int)ser.ClassId;}
+		public int Get(ISerializable ser){return Get(GetInt(ser));}
+		public int Get(int tableId)
+		{
+			int recordId;
+			object obj=ids[tableId];
+			recordId= obj==null ? minRecordId : (int)obj;
+			if(lib.HasDb) 
+			{
+				if(obj==null || recordId%Constants.recordIdInc==0)
+				{
+					recordId=GetPool(tableId,Constants.recordIdInc);
+				}
+			}
+			recordId++;
+			ids[tableId]=recordId;
+			return recordId;
+		}
+		public void Clear()
+		{
+			ids.Clear();
+		}
+		int GetPool(int tableId,int poolSize)
+		{
+			int recordId;
+			using(DbConnection conn=lib.ConnectionFactory.Create())
+			{
+				IDbTransaction tr=conn.IDbConnection.BeginTransaction(IsolationLevel.Serializable);
+				GmCommand cmd=conn.CreateCommandById("selectRecordIdFromGisIdsWhereTableId",tr);
+				cmd.AddInt("TableId",tableId);
+				try
+				{
+					object obj=cmd.ExecuteScalar();
+					if(obj is int)
+					{
+						recordId=(int)obj;
+						cmd.CommandId="updateGisIdsSetRecordIdWhereTableId";
+					}
+					else
+					{
+						recordId=minRecordId;
+						cmd.CommandId="insertIntoGisIds";
+					}
+					cmd.AddInt("RecordId",recordId+poolSize);
+					cmd.ExecuteNonQuery();
+					tr.Commit();
+				}
+				catch(Exception ex)
+				{
+					tr.Rollback();
+					throw ex;
+				}
+			}
+			return recordId;
+		}
+		#endregion
+
+		#region ISerializable Members
+
+		public GeoLib.ClassId ClassId
+		{
+			get
+			{
+				return ClassId.IdGenerator;
+			}
+		}
+
+		public int Id
+		{
+			get
+			{
+				return 0;
+			}
+		}
+
+		#endregion
+	}
+}

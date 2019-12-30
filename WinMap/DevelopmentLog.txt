@@ -1,0 +1,331 @@
+
+CREATE PROCEDURE dbo.AddType
+	@Id int,
+	@ParentId int,
+	@Name varchar(50),
+	@Style varchar(200)
+AS
+begin
+  insert into GTypes (Id,ParentId,Name,Style) values (@Id,@ParentId,@Name,@Style)
+	RETURN 
+end
+
+
+
+		static readonly char[] tokens={'.','\\',':','/'};
+			foreach(string filePath in fileNames)
+			{
+                using( MIFFileReader sr = new MIFFileReader( filePath ) )
+                {
+                    if( sr.Read() )
+                        CreateType( sr.mifType );
+                }
+
+                using( MIFFileReader sr = new MIFFileReader( filePath ) )
+				{
+                    //					object[] attrs;
+					curType.Name=Path.GetFileNameWithoutExtension(filePath);
+					while(sr.Read())
+					{
+						switch(sr.mifType)
+						{
+							case MIFUnit.Arc:
+								break;
+							case MIFUnit.Point:
+								Read((MIFPoint)sr.Get());
+								break;
+							case MIFUnit.Region:
+								Read((MIFRegion)sr.Get());
+								break;
+							case MIFUnit.Polyline:
+								Read((MIFPolyline)sr.Get());
+								break;
+						}
+					}
+				}
+			}
+			lib.SMin=10;
+//			if(lib.Bounds.IsNull) 
+//                lib.SetBounds( rect );
+
+      lib.SetBounds( new Rect( left, bottom, right, top ) );
+			lib.SMax=Geomethod.GeoLib.Utils.RoundScale(lib.Bounds.MaxSize/50);
+			lib.Scales.InitScales();
+			return lib;
+		}
+
+		bool CreateType( MIFUnit mu)
+=======
+
+	internal class BoundTablesConverter : ExpandableObjectConverter 
+	{
+      
+		public override bool CanConvertFrom(
+			ITypeDescriptorContext context, Type t) 
+		{
+
+			if (t == typeof(string)) 
+			{
+				return true;
+			}
+			return base.CanConvertFrom(context, t);
+		}
+
+		public override object ConvertFrom(
+			ITypeDescriptorContext context, 
+			CultureInfo info,
+			object value) 
+		{
+
+			if (value is string) 
+			{
+				try 
+				{
+					string s = (string) value;
+					return s.Split(',');
+				}
+				catch {}
+				// if we got this far, complain that we
+				// couldn't parse the string
+				//
+				throw new ArgumentException(
+					"Can not convert '" + (string)value + 
+					"' to type Person");
+         
+			}
+			return base.ConvertFrom(context, info, value);
+		}
+                                
+
+
+		public override object ConvertTo(
+			ITypeDescriptorContext context, 
+			CultureInfo culture, 
+			object value,    
+			Type destType) 
+		{
+			if (destType == typeof(string) && value is string[]) 
+			{
+				string[] ss = (string[])value;
+				// simply build the string as "Last, First (Age)"
+				string s="";
+				for(int i=0;i<ss.Length;i++)
+				{
+					if(i>0) s+=',';
+					s+=ss[i];
+				}
+				return s;
+			}
+			return base.ConvertTo(context, culture, value, destType);
+		}   
+	}
+
+		public bool OpenConnection()
+		{
+			ConnectionsForm form=new ConnectionsForm(this);
+			if(form.ShowDialog()==DialogResult.OK)
+			{
+				if(connection!=form.SelectedConnection)
+				{
+					connection=form.SelectedConnection;
+					return true;
+				}
+			}
+			return false;
+		}
+
+
+			SetStyle(ControlStyles.AllPaintingInWmPaint |
+				ControlStyles.UserPaint |
+				ControlStyles.DoubleBuffer,true);
+
+					using(FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
+					{
+						using(BinaryWriter bw=new BinaryWriter(fs))
+						{
+							using(Context context=lib.GetContext())
+							{
+								context.Filter=new Filter(BatchLevel.Object);
+								lib.Write(context,bw);
+							}
+						}
+					}
+
+
+DefaultValue("")
+ReadOnlyAttribute(true),
+		public const string allLayerName="All";
+		public const string allTypeName="All";
+		public const string defaultViewName="Default";
+
+
+		public string _logfilepath
+		{
+			get
+			{
+				return options.logFilePath;
+			}
+			set
+			{
+				options.logFilePath=value;
+			}
+		}
+		private void MainForm_MdiChildActivate(object sender, System.EventArgs e)
+		{
+			this.UpdateScaleCombo();
+			statusBar.Text = "";
+		}
+		const string newline="\r\n";
+		BitArray32 showFlag=0;
+		StreamWriter sw=null;
+	
+		public bool IsDisplayed(LogType logType){return showFlag[(int)logType];}
+		public void SetDisplayed(LogType logType,bool val){showFlag[(int)logType]=val;}
+
+		public Log(){}
+		
+		public void Init(string filePath)
+		{
+			if(filePath==null||filePath.Length==0) return;
+			if(!Path.IsPathRooted(filePath)) filePath=Path.Combine(Global.BaseDirectory,filePath);
+			sw=new StreamWriter(filePath,true);
+		}
+		
+		public void Info(string s)
+		{
+			Write(LogType.Info,s);
+		}
+		public void Warning(string s)
+		{
+			Write(LogType.Warning,s);
+		}
+		public void Error(string s)
+		{
+			Write(LogType.Error,s);
+		}
+		public void Exception(Exception ex)
+		{
+			ShowMessage(ex.Message,LogType.Exception);
+			Write(LogType.Exception,ex.ToString());
+		}
+		public void Exception(Exception ex,string extInfo)
+		{
+			extInfo=newline+"\tExtended info: "+extInfo;
+			ShowMessage(ex.Message+extInfo,LogType.Exception);
+			Write(LogType.Exception,ex.ToString()+extInfo);
+		}
+		public void Write(LogType logType,string s)
+		{
+			if(sw==null) return;
+			try
+			{
+				sw.WriteLine(string.Format("{0}\t{1}\t{2}",DateTime.Now,logType.ToString(),s));
+			}
+			catch(Exception ex)
+			{
+				ShowMessage(ex.Message,LogType.Exception);
+			}
+		}
+		void ShowMessage(string s,LogType logType)
+		{
+			if(IsDisplayed(logType))
+			{
+				//				MessageBox.Show(s);
+				MessageForm form=new MessageForm();
+				form.Message=s;
+				if(Form.ActiveForm==null)
+				{
+					form.StartPosition=FormStartPosition.CenterScreen;
+					form.ShowDialog();
+				}
+				else form.ShowDialog(Form.ActiveForm);
+			}
+		}
+		public void Close()
+		{
+			if(sw==null) return;
+			sw.Close();
+		}
+		public void Flush()
+		{
+			if(sw==null) return;
+			sw.Flush();
+		}
+			/*			ToolbarItemBase tbb=e.Item;
+						if(tbb==this.tbbOpen)	Open();
+						else if(tbb==this.tbbSave) Save();
+						else if(tbb==this.tbbPrint) Print();
+						else if(tbb==this.tbbOptions) OnOptions();
+						else if(tbb==this.tbbHelp) Contents();*/
+			/*			ToolbarItemBase tbb=e.Item;
+			if(tbb==this.tbbScaleUp) ScaleUp();
+			else if(tbb==this.tbbScaleDown) ScaleDown();		
+			else if(tbb==this.tbbLeft) MoveLeft();		
+			else if(tbb==this.tbbRight) MoveRight();		
+			else if(tbb==this.tbbTop) MoveTop();		
+			else if(tbb==this.tbbBottom) MoveBottom();		
+			else if(tbb==this.tbbRotateCW) RotateCW();		
+			else if(tbb==this.tbbRotateCCW) RotateCCW();		*/
+
+
+			Pen myPen = new Pen(Color.Blue, 2);
+			Pen myPen2 = new Pen(Color.Red, 2);
+			// Create an array of points.
+			Point[] myArray =
+{
+	new Point(0, 0),
+	new Point(100, 0),
+	new Point(100, 100),
+	new Point(0, 100)
+};
+			// Draw the Points to the screen before applying the
+			// transform.
+			e.Graphics.DrawPolygon(myPen, myArray);
+			// Create a matrix, scale it, and translate it.
+			Matrix myMatrix = new Matrix();
+			myMatrix.Scale(2, 2, MatrixOrder.Append);
+			myMatrix.Translate(100, 100, MatrixOrder.Append);
+			myMatrix.Elements[1]=3.0f;
+			// List the matrix elements to the screen.
+			ListMatrixElements(e,
+				myMatrix,
+				"Scaled and Translated Matrix",
+				6,
+				20);
+			// Apply the transform to the array.
+			myMatrix.TransformPoints(myArray);
+			// Draw the Points to the screen again after applying the
+			// transform.
+			e.Graphics.DrawPolygon(myPen2, myArray);
+		}
+		public void ListMatrixElements(
+			PaintEventArgs e,
+			Matrix matrix,
+			string matrixName,
+			int numElements,
+			int y)
+		{
+			// Set up variables for drawing the array
+			// of points to the screen.
+			int i;
+			float x = 20, X = 200;
+			Font myFont = new Font("Arial", 8);
+			SolidBrush myBrush = new SolidBrush(Color.Black);
+			// Draw the matrix name to the screen.
+			e.Graphics.DrawString(
+				matrixName + ":  ",
+				myFont,
+				myBrush,
+				x,
+				y);
+			// Draw the set of path points and types to the screen.
+			for(i=0; i<numElements; i++)
+			{
+				e.Graphics.DrawString(
+					matrix.Elements[i].ToString() + ", ",
+					myFont,
+					myBrush,
+					X,
+					y);
+				X += 30;
+			}

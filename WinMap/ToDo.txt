@@ -1,0 +1,32 @@
+Targets:
+
+- vector graphics editor;
+- schemes builder;
+- GIS;
+- publish maps in the internet.
+
+The tasks:
+
+- types, views, layers, backgrounds, search panels;
+- props, tables, records panels;
+- map panels;
+- colors, scales, newMap, connections dialogs;
+- config dialog;
+- object editing functionality;
+
+- multilang help;
+- printing;
+- reports;
+- designer forms/tables;
+- style builder dialog;
+- import/export dxf, shape, mif;
+- new types;
+
+Possible:
+
+
+
+Future development:
+
+- publish the maps in the internet (svg, images);
+- map server (clients: html, java, silverlight, flash).

@@ -1,0 +1,8 @@
+/*        MapCreator mapCreator = new MapCreator();
+        GisConnection conn = null;
+        public MapCreator MapCreator { get { return mapCreator; } }
+        public GisConnection GisConnection { get { return conn; } }*/
+/*        public string dataDir = PathUtils.BaseDirectory + "Data\\";
+        public string defaultFileName = "Map";
+        public string fileExt = ".wdr";
+        public string fileFilter = "WinMap files (*.wdr)|*.wdr";*/

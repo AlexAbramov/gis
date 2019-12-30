@@ -1,0 +1,43 @@
+﻿id;common
+insertIntoGisRanges;insert into gisRanges values ( @Id,  @TypeId,  @Code)
+insertIntoGisBg;insert into gisBg values (  @Id,  @Attr,  @FilePath,  @SMin,  @SMax,  @Opacity,  @Code)
+insertIntoGisViews;insert into gisViews values (  @Id,  @Attr,  @Name,  @Code)
+insertIntoGisLayers;insert into gisLayers values (  @Id,  @Attr,  @Name,  @Code)
+insertIntoGisLib;insert into gisLib values (  @Id,  @Attr,  @Name,  @Style, @DefaultStyle, @SMin, @SMax, @Code, @IndexerCode, @Scales)
+insertIntoGisColors;insert into gisColors values ( @Id, @Name, @Val)
+insertIntoGisObjects;insert into gisObjects values ( @Id, @TypeId, @RangeId, @Attr, @Name, @Caption, @Style, @TextAttr, @Code)
+insertIntoGisTypes;insert into gisTypes values ( @Id, @ParentId, @Priority, @Attr, @Name, @Style, @GeomType, @SMin, @SMax)
+insertIntoGisCustomTables;insert into gisCustomTables values ( @Id, @Name)
+insertIntoGisIds;insert into gisIds values ( @TableId, @RecordId)
+selectCountFromGisBg;select count(*) from gisBg
+selectAllFromGisBg;select * from gisBg
+selectCountFromGisColors;select count(*) from gisColors
+selectAllFromGisColors;select * from gisColors
+selectAllFromGisCustomTables;select * from gisCustomTables
+selectAllFromGisTypeBinding;select * from gisTypeBinding
+selectCountFromGisLayers;select count(*) from gisLayers
+selectAllFromGisLayers;select * from gisLayers
+selectAllFromGisObjectsWhereId;select * from gisObjects where Id= @Id
+selectCountFromGisRanges;select count(*) from gisRanges
+selectAllFromGisRanges;select * from gisRanges
+selectAllFromGisObjects;select * from gisObjects
+selectAllFromGisLibWhereId;select * from gisLib where Id= @Id
+selectCountFromGisTypes;select count(*) from gisTypes
+selectAllFromGisTypes;select * from gisTypes
+selectCountFromGisObjectsWhereRangeId;select count(*) from gisObjects where RangeId= @RangeId
+selectAllFromGisObjectsWhereRangeId;select * from gisObjects where RangeId= @RangeId
+selectCountFromGisRangesWhereTypeId;select count(*) from gisRanges where TypeId= @TypeId
+selectAllFromGisRangesWhereTypeId;select * from gisRanges where TypeId= @TypeId
+selectCountFromGisViews;select count(*) from gisViews
+selectAllFromGisViews;select * from gisViews
+selectAllFromGisIds;select * from gisIds
+selectRecordIdFromGisIdsWhereTableId;select * from gisIds where TableId= @TableId
+deleteFromGisViewsWhereId;delete from gisViews where Id= @Id
+deleteFromGisBgWhereId;delete from gisBg where Id= @Id
+deleteFromGisLayersWhereId;delete from gisLayers where Id= @Id
+deleteFromGisObjectsWhereId;delete from gisObjects where Id= @Id
+deleteFromGisRangesWhereId;delete from gisRanges where Id= @Id
+deleteFromGisTypesWhereId;delete from gisTypes where Id= @Id
+deleteFromGisCustomTablesWhereId;delete from gisCustomTables where Id= @Id
+updateGisIdsSetRecordIdWhereTableId;update gisIds set RecordId= @RecordId where TableId= @TableId
+deleteFromGisColorsWhereId;delete from gisColors where Id= @Id
